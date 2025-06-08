@@ -7,7 +7,7 @@ An AI-powered multilingual education system for personalized student learning an
 - Frontend: React.js
 - Backend: Node.js + Express
 - DB: MongoDB Atlas
-- AI/NLP: OpenAI / HuggingFace
-- File Storage: Cloudinary / Firebase
-- Video Call: Zoom API / Google Meet
+- AI/NLP: OpenAI
+- File Storage: Cloudinary
+- Video Call: Zoom API
 
