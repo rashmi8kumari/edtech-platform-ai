@@ -1,17 +1,22 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const connectDB = require('./config/db');
+const authRoutes = require('./routes/authRoutes');
+
 
 
 const app = express();
-
+connectDB();
 
 //Middleware to parse JSON
 app.use(express.json());
 
+app.use('/api/auth', authRoutes);
+
 //simple route
 app.get('/', (req,res)=>{
-    res.send('Welcome to EdTech Platform API');
+    res.send('EdTech Backend is running');
 });
 
 
