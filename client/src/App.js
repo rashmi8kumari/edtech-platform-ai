@@ -1,10 +1,17 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Register from './pages/Register';
+import Login from './pages/Login';
+
 
 function App() {
   return (
-    <div>
-      <h1>Welcome to EdTech Platform</h1>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Register/>}/>
+      <Route path="/login" element={<Login/>}/>
+    </Routes>
+    </BrowserRouter>
   );
 }
 
