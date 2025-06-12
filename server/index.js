@@ -5,12 +5,15 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const cors = require("cors");
 const app = express();
+const dashboardRoute = require('./routes/dashboardRoute');
+
 
 
 connectDB();
 
 //Middleware to parse JSON
 app.use(cors());
+app.use('/api/dashboard', dashboardRoute);
 
 app.use(express.json());
 
