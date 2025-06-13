@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+// Ye axiosInstance ko import kar rahe hain jo humne banaya tha
+import axiosInstance from '../utils/axiosInstance';  
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    // Ab token manually nikalne ki jarurat nahi hai
+    // AxiosInstance already token attach kar raha hai automatically
 
-    axios.get('http://localhost:5000/api/dashboard', {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-    .then(res => {
-      setUser(res.data.user);
-    })
-    .catch(err => {
-      console.error(err);
-      setError("Unauthorized Access. Please login again.");
-    });
+    axiosInstance.get('/dashboard')
+      .then(res => {
+        setUser(res.data.user);
+      })
+      .catch(err => {
+        console.error(err);
+        setError("Unauthorized Access. Please login again.");
+      });
   }, []);
 
   const handleLogout = () => {
@@ -45,3 +43,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+

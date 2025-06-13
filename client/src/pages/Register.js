@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";  // axiosInstance import kiya
 
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
-    emails: "",
+    email: "",  
     password: "",
     preferredLanguage: "English",
   });
@@ -16,13 +16,10 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
-        formData
-      );
+      const res = await axiosInstance.post("/auth/register", formData);
       alert(res.data.message);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       if (err.response && err.response.data) {
         alert(err.response.data.message);
       } else {
@@ -40,6 +37,7 @@ const Register = () => {
           name="name"
           placeholder="Name"
           onChange={handleChange}
+          required
         />
         <br />
         <input
@@ -47,6 +45,7 @@ const Register = () => {
           name="email"
           placeholder="Email"
           onChange={handleChange}
+          required
         />
         <br />
         <input
@@ -54,12 +53,13 @@ const Register = () => {
           name="password"
           placeholder="Password"
           onChange={handleChange}
+          required
         />
         <br />
-        <select name="preferredLanguage" onChange={handleChange}>
-          <option>English</option>
-          <option>Hindi</option>
-          <option>Hinglish</option>
+        <select name="preferredLanguage" onChange={handleChange} required>
+          <option value="English">English</option>
+          <option value="Hindi">Hindi</option>
+          <option value="Hinglish">Hinglish</option>
         </select>
         <br />
         <button type="submit">Register</button>
@@ -69,3 +69,4 @@ const Register = () => {
 };
 
 export default Register;
+
